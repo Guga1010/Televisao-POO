@@ -14,27 +14,31 @@ class Televisao:
     def desligar(self):
         self.ligado = False
 
-    def aument_canal(self):
+    def aument_canal(self,n):
         if self.ligado:
-            self.canal+=1
+            self.canal+=n
         else:
             print("Ligue a TV primeiro")
-    def diminui_canal(self):
+    def diminui_canal(self,n):
         if self.ligado:
-            if self.canal:
-                self.canal-=1
+            self.canal-=n
+            if self.canal < 0:
+                self.canal = 0
         else:
             print("Ligue a TV primeiro")
     
-    def aument_vol(self):
+    def aument_vol(self,n):
         if self.ligado:
-            self.volume+=1
+            self.volume+=n
+            if self.volume > 100:
+                self.volume = 100
         else:
             print("Ligue a TV primeiro")
-    def diminui_vol(self):
+    def diminui_vol(self,n):
         if self.ligado:
-            if self.volume:
-                self.volume-=1
+            self.volume-=n
+            if self.volume < 0:
+                self.volume = 0
         else:
             print("Ligue a TV primeiro")
 
@@ -111,8 +115,9 @@ def desligarTV():
 def aum_canal():
     os.system("cls") or None
     p = input("Digite a posição da TV que deseja aumentar o canal: ")
+    q = int(input("Digite a quantidade de canais a ser aumentado: "))
     try:
-        televisoes[int(p)].aument_canal()
+        televisoes[int(p)].aument_canal(q)
     except:
         print("Não existe televisão nesta posição")
     os.system("pause")
@@ -120,8 +125,9 @@ def aum_canal():
 def dim_canal():
     os.system("cls") or None
     p = input("Digite a posição da TV que deseja diminuir o canal: ")
+    q = int(input("Digite a quantidade de canais a ser diminuido: "))
     try:
-        televisoes[int(p)].diminui_canal()
+        televisoes[int(p)].diminui_canal(q)
     except:
         print("Não existe televisão nesta posição")
     os.system("pause")
@@ -129,8 +135,9 @@ def dim_canal():
 def aum_vol():
     os.system("cls") or None
     p = input("Digite a posição da TV que deseja aumentar o volume: ")
+    q = int(input("Digite a quantidade de volume a ser aumentado: "))
     try:
-        televisoes[int(p)].aument_vol()
+        televisoes[int(p)].aument_vol(q)
     except:
         print("Não existe televisão nesta posição")
     os.system("pause")
@@ -138,8 +145,9 @@ def aum_vol():
 def dim_vol():
     os.system("cls") or None
     p = input("Digite a posição da TV que deseja diminuir o volume: ")
+    q = int(input("Digite a quantidade de volume a ser diminuido: "))
     try:
-        televisoes[int(p)].diminui_vol()
+        televisoes[int(p)].diminui_vol(q)
     except:
         print("Não existe televisão nesta posição")
     os.system("pause")
